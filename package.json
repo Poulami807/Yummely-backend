@@ -1,10 +1,10 @@
 {
-  "name": "server",
+  "name": "index",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node build/server.js",
-    "dev": "nodemon --exec babel-node src/server.js",
+    "start": "babel-node build/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src -d build"
   },
   "author": "",

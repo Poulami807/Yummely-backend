@@ -1,4 +1,6 @@
 require('dotenv').config();
+const path = require("path");
+
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -36,9 +38,9 @@ app.use(session({ secret: 'food app' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/",(req,res)=>{
-    res.json({message: "Setup success"});
-});
+// app.get("/",(req,res)=>{
+//     res.json({message: "Setup success"});
+// });
 
 app.use("/auth",Auth);
 app.use("/restaurant",Restaurant);
@@ -50,7 +52,31 @@ app.use("/review",Review);
 app.use("/user",User);
 app.use("/payment",Payment);
 
-app.listen(4000,()=>{
+// if (process.env.NODE_ENV === 'production'){
+//     app.use(express.static("client/build"))
+// } 
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  // app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  // app.get("*", (req, res) =>
+  //   res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  // );
+
+  app.use(express.static("client/build"));
+  app.get("*", function (req, res) {
+    res.sendFile(path.resolve(__dirname1, "client/build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+
+const PORT = process.env.PORT
+
+app.listen(PORT || 4000 ,()=>{
 connectDB()
 .then(()=>console.log('server is running'))
 .catch(()=>console.log('Server is running but db connection failed'))

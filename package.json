@@ -15,7 +15,6 @@
     "@babel/node": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
     "aws-sdk": "^2.1198.0",
-    "babel-cli": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",

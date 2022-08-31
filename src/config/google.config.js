@@ -10,7 +10,7 @@ export default (passport) => {
             {
                 clientID: process.env.GOOGLE_CLIENT_ID,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                callbackURL: "http://localhost:4000/auth/google/redirect"  //after google authentication, user will be redirected to this route
+                callbackURL: "https://yummely-server.herokuapp.com/auth/google/redirect"  //after google authentication, user will be redirected to this route
             },
          //  after authenticating by google, these values will be received 
         async (accessToken,refreshToken,profile,done) => {     //done -> first parameter:for google; second parameter:to display to user
